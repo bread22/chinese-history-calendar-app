@@ -12,7 +12,7 @@ class DatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
-        private const val DATABASE_NAME = "your_database_name.db"
+        private const val DATABASE_NAME = "calendar.db"
         private const val DATABASE_VERSION = 1
     }
 
