@@ -1,3 +1,4 @@
+import android.annotation.SuppressLint
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
@@ -53,6 +54,7 @@ class DatabaseHelper(context: Context) :
             outputStream?.close()
         }
     }
+    @SuppressLint("Range")
     fun getResults(wYear: Int, wMonth: Int, wDay: Int): List<ChineseYearResultEntry> {
         val db = this.readableDatabase
         val results = mutableListOf<ChineseYearResultEntry>()
@@ -70,6 +72,8 @@ class DatabaseHelper(context: Context) :
                 val cYear = cursor.getInt(cursor.getColumnIndex("c_year"))
                 val cMonth = cursor.getInt(cursor.getColumnIndex("c_month"))
                 val cDay = cursor.getInt(cursor.getColumnIndex("c_day"))
+                val ganzhiDay = cursor.getString(cursor.getColumnIndex("ganzhi_day"))
+                val ganzhiYear = cursor.getString(cursor.getColumnIndex("ganzhi_year"))
 
                 results.add(
                     ChineseYearResultEntry(
@@ -78,7 +82,9 @@ class DatabaseHelper(context: Context) :
                         nianhao = nianhao,
                         year = cYear,
                         month = cMonth,
-                        day = cDay
+                        day = cDay,
+                        ganzhi_year = ganzhiYear,
+                        ganzhi_day = ganzhiDay,
                     )
                 )
             } while (cursor.moveToNext())
@@ -95,6 +101,8 @@ class DatabaseHelper(context: Context) :
         val year: Int,
         val month: Int,
         val day: Int,
+        val ganzhi_year: String,
+        val ganzhi_day: String,
     )
 
 }

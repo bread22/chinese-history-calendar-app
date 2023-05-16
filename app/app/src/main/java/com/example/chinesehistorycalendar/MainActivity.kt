@@ -74,7 +74,6 @@ class MainActivity : AppCompatActivity() {
         monthAutoComplete.setOnItemClickListener { _, _, _, _ -> updateResults() }
         dayAutoComplete.setOnItemClickListener { _, _, _, _ -> updateResults() }
 
-
     }
 
     private fun updateResults() {
@@ -92,10 +91,7 @@ class MainActivity : AppCompatActivity() {
     inner class ResultAdapter(private val resultList: List<ChineseYearResultEntry>) : RecyclerView.Adapter<ResultAdapter.ResultViewHolder>() {
 
         inner class ResultViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            val dynastyText: TextView = itemView.findViewById(R.id.result_dynasty)
-            val emperorText: TextView = itemView.findViewById(R.id.result_emperor)
-            val nianhaoText: TextView = itemView.findViewById(R.id.result_nianhao)
-            val dateText: TextView = itemView.findViewById(R.id.result_date)
+            val resultText: TextView = itemView.findViewById(R.id.result_text)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultViewHolder {
@@ -105,10 +101,11 @@ class MainActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: ResultViewHolder, position: Int) {
             val currentItem = resultList[position]
-            holder.dynastyText.text = "Dynasty: ${currentItem.dynasty}"
-            holder.emperorText.text = "Emperor: ${currentItem.emperor}"
-            holder.nianhaoText.text = "Nianhao: ${currentItem.nianhao}"
-            holder.dateText.text = "Date: ${currentItem.year}/${currentItem.month}/${currentItem.day}"
+            val resultString = """
+                ${currentItem.dynasty} ${currentItem.emperor} ${currentItem.nianhao} ${currentItem.year}年 ${currentItem.ganzhi_year} ${currentItem.month}月 ${currentItem.day} ${currentItem.ganzhi_day}
+            """.trimIndent()
+
+            holder.resultText.text = resultString
             Log.d("ResultAdapter", "Binding item: $currentItem") // Add this line
         }
 
