@@ -53,4 +53,48 @@ class DatabaseHelper(context: Context) :
             outputStream?.close()
         }
     }
+    fun getResults(wYear: Int, wMonth: Int, wDay: Int): List<ChineseYearResultEntry> {
+        val db = this.readableDatabase
+        val results = mutableListOf<ChineseYearResultEntry>()
+
+        val cursor = db.rawQuery(
+            "SELECT * FROM calendar WHERE w_year = ? AND w_month = ? AND w_day = ?",
+            arrayOf(wYear.toString(), wMonth.toString(), wDay.toString())
+        )
+
+        if (cursor.moveToFirst()) {
+            do {
+                val dynasty = cursor.getString(cursor.getColumnIndex("dynasty"))
+                val emperor = cursor.getString(cursor.getColumnIndex("emperor"))
+                val nianhao = cursor.getString(cursor.getColumnIndex("nianhao"))
+                val cYear = cursor.getInt(cursor.getColumnIndex("c_year"))
+                val cMonth = cursor.getInt(cursor.getColumnIndex("c_month"))
+                val cDay = cursor.getInt(cursor.getColumnIndex("c_day"))
+
+                results.add(
+                    ChineseYearResultEntry(
+                        dynasty = dynasty,
+                        emperor = emperor,
+                        nianhao = nianhao,
+                        year = cYear,
+                        month = cMonth,
+                        day = cDay
+                    )
+                )
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        return results
+    }
+
+    data class ChineseYearResultEntry(
+        val dynasty: String,
+        val emperor: String,
+        val nianhao: String,
+        val year: Int,
+        val month: Int,
+        val day: Int,
+    )
+
 }
