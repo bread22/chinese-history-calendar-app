@@ -1,44 +1,28 @@
 package com.example.chinesehistorycalendar
 
-import android.util.Log
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.AutoCompleteTextView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import DatabaseHelper
-import DatabaseHelper.ChineseYearResultEntry
-
+import com.example.chinesehistorycalendar.DatabaseHelper
+import com.example.chinesehistorycalendar.Constants
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var yearAutoComplete: AutoCompleteTextView
     private lateinit var monthAutoComplete: AutoCompleteTextView
     private lateinit var dayAutoComplete: AutoCompleteTextView
-    private lateinit var resultTextView: TextView
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        // Initialize DatabaseHelper
-        val dbHelper = DatabaseHelper(this)
-//        val cursor = db.rawQuery("SELECT * FROM your_table_name", null)
-//
-//        val stringBuilder = StringBuilder()
-//
-//        while (cursor.moveToNext()) {
-//            // Get the data from the cursor
-//            val columnName1 = cursor.getString(cursor.getColumnIndex("column_name1"))
-//            val columnName2 = cursor.getString(cursor.getColumnIndex("column_name2"))
-//
-//            // Format the data and append it to the StringBuilder
-//            stringBuilder.append("Column1: $columnName1, Column2: $columnName2\n")
-//        }
 
         // Get references to your AutoCompleteTextViews, for C.E date
         yearAutoComplete = findViewById(R.id.yearAutoComplete)
@@ -58,16 +42,11 @@ class MainActivity : AppCompatActivity() {
         dayAutoComplete.threshold = 1
 
         // Initialize RecyclerView
-        recyclerView = findViewById<RecyclerView>(R.id.recyclerView_CNY)
+        recyclerView = findViewById(R.id.recyclerView_CNY)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = ResultAdapter(emptyList()) // set an empty adapter
 
-
-        val textChangedListener: (Any) -> Unit = {
-            // For the sake of demonstration, let's assume that the result of the query is an integer
-            resultTextView.text = "${yearAutoComplete.text}/${monthAutoComplete.text}/${dayAutoComplete.text}"
-        }
 
         // Add listeners to your AutoCompleteTextViews
         yearAutoComplete.setOnItemClickListener { _, _, _, _ -> updateResults() }
@@ -88,7 +67,7 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView.adapter = ResultAdapter(resultList)
     }
-    inner class ResultAdapter(private val resultList: List<ChineseYearResultEntry>) : RecyclerView.Adapter<ResultAdapter.ResultViewHolder>() {
+    inner class ResultAdapter(private val resultList: List<DatabaseHelper.ChineseYearResultEntry>) : RecyclerView.Adapter<ResultAdapter.ResultViewHolder>() {
 
         inner class ResultViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val resultText: TextView = itemView.findViewById(R.id.result_text)
@@ -101,9 +80,14 @@ class MainActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: ResultViewHolder, position: Int) {
             val currentItem = resultList[position]
-            val resultString = """
-                ${currentItem.dynasty} ${currentItem.emperor} ${currentItem.nianhao} ${currentItem.year}年 ${currentItem.ganzhi_year} ${currentItem.month}月 ${currentItem.day} ${currentItem.ganzhi_day}
-            """.trimIndent()
+            val resultString = "${currentItem.dynasty} " +
+                    "${currentItem.emperor} " +
+                    "${currentItem.nianhao} " +
+                    "${Constants.NUMBER_MAP_YEAR_MONTH[currentItem.year]}年 " +
+                    "${currentItem.ganzhi_year} " +
+                    "${convertMonthToChinese(currentItem.month)}月 " +
+                    "${Constants.NUMBER_MAP_DAY[currentItem.day]} " +
+                    "${currentItem.ganzhi_day}"
 
             holder.resultText.text = resultString
             Log.d("ResultAdapter", "Binding item: $currentItem") // Add this line
@@ -111,4 +95,26 @@ class MainActivity : AppCompatActivity() {
 
         override fun getItemCount() = resultList.size
     }
+
+    fun convertMonthToChinese(input: String): String {
+        // Define a regex pattern to match numbers
+        val pattern = Regex("[0-9]+")
+
+        // Split the input into a list of parts
+        val parts = pattern.findAll(input).toList().map { it.value }
+
+        // Convert each part that's a number
+        val convertedParts = parts.map { part ->
+            Constants.NUMBER_MAP_YEAR_MONTH[part] ?: part
+        }
+
+        // Join the converted parts back into a single string
+        var result = input
+        for ((index, part) in parts.withIndex()) {
+            result = input.replace(part, convertedParts[index])
+        }
+
+        return result
+    }
+
 }

@@ -1,9 +1,10 @@
+package com.example.chinesehistorycalendar
+
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.AssetManager
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.content.res.AssetManager
-import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
@@ -69,9 +70,9 @@ class DatabaseHelper(context: Context) :
                 val dynasty = cursor.getString(cursor.getColumnIndex("dynasty"))
                 val emperor = cursor.getString(cursor.getColumnIndex("emperor"))
                 val nianhao = cursor.getString(cursor.getColumnIndex("nianhao"))
-                val cYear = cursor.getInt(cursor.getColumnIndex("c_year"))
-                val cMonth = cursor.getInt(cursor.getColumnIndex("c_month"))
-                val cDay = cursor.getInt(cursor.getColumnIndex("c_day"))
+                val cYear = cursor.getString(cursor.getColumnIndex("c_year"))
+                val cMonth = cursor.getString(cursor.getColumnIndex("c_month"))
+                val cDay = cursor.getString(cursor.getColumnIndex("c_day"))
                 val ganzhiDay = cursor.getString(cursor.getColumnIndex("ganzhi_day"))
                 val ganzhiYear = cursor.getString(cursor.getColumnIndex("ganzhi_year"))
 
@@ -98,9 +99,9 @@ class DatabaseHelper(context: Context) :
         val dynasty: String,
         val emperor: String,
         val nianhao: String,
-        val year: Int,
-        val month: Int,
-        val day: Int,
+        val year: String,
+        val month: String,
+        val day: String,
         val ganzhi_year: String,
         val ganzhi_day: String,
     )
