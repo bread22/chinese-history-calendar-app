@@ -13,14 +13,26 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.25" />
 
+    <Button
+        android:id="@+id/button_navigate_to_chinese2ce_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="200dp"
+        android:layout_marginTop="10dp"
+        android:text="干支 --> 公元" />
+
     <TextView
         android:id="@+id/textView_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="公元纪年"
-        app:layout_constraintBottom_toTopOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/button_navigate_to_chinese2ce_activity"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="100dp"/>
 
     <AutoCompleteTextView
         android:id="@+id/yearAutoComplete"
@@ -30,7 +42,7 @@
         android:dropDownWidth="wrap_content"
         app:layout_constraintEnd_toStartOf="@+id/monthAutoComplete"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline" />
+        app:layout_constraintTop_toBottomOf="@id/textView_header" />
 
     <AutoCompleteTextView
         android:id="@+id/monthAutoComplete"
@@ -40,7 +52,7 @@
         android:dropDownWidth="wrap_content"
         app:layout_constraintEnd_toStartOf="@+id/dayAutoComplete"
         app:layout_constraintStart_toEndOf="@+id/yearAutoComplete"
-        app:layout_constraintTop_toTopOf="@id/guideline" />
+        app:layout_constraintTop_toBottomOf="@id/textView_header" />
 
     <AutoCompleteTextView
         android:id="@+id/dayAutoComplete"
@@ -50,7 +62,7 @@
         android:dropDownWidth="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/monthAutoComplete"
-        app:layout_constraintTop_toTopOf="@id/guideline" />
+        app:layout_constraintTop_toBottomOf="@id/textView_header" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_CNY"

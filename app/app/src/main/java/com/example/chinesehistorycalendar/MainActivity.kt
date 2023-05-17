@@ -1,11 +1,13 @@
 package com.example.chinesehistorycalendar
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +25,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Button to switch view for Chinese to C.E.
+        val buttonNavigateToSecondActivity = findViewById<Button>(R.id.button_navigate_to_chinese2ce_activity)
+        buttonNavigateToSecondActivity.setOnClickListener {
+            val intent = Intent(this, ChineseToCE::class.java)
+            startActivity(intent)
+        }
 
         // Get references to your AutoCompleteTextViews, for C.E date
         yearAutoComplete = findViewById(R.id.yearAutoComplete)
