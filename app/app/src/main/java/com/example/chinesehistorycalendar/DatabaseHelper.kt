@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.AssetManager
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
@@ -106,4 +107,27 @@ class DatabaseHelper(context: Context) :
         val ganzhi_day: String,
     )
 
+    fun getValuesForFieldWithConstraints(field: String, constraints: Map<String, String>): List<String> {
+        val db = this.readableDatabase
+        val values = mutableListOf<String>()
+
+        var query = "SELECT DISTINCT $field FROM calendar"
+        if (constraints.isNotEmpty()) {
+            query += " WHERE "
+            query += constraints.map { "${it.key} = '${it.value}'" }.joinToString(" AND ")
+        }
+
+        val cursor = db.rawQuery(query, null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val value = cursor.getString(0)
+                values.add(value)
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        Log.d("DatabaseHelper", "getValuesForFieldWithConstraints called once with $field, $constraints")
+        return values
+    }
 }
