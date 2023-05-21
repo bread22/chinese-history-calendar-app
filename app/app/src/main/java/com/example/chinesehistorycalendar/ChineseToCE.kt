@@ -1,9 +1,11 @@
 package com.example.chinesehistorycalendar
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -41,6 +43,12 @@ class ChineseToCE : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chinese_to_ce)
+
+        // Button to switch view for Chinese to C.E.
+        val buttonNavigateToSecondActivity = findViewById<Button>(R.id.button_navigate_to_main_activity)
+        buttonNavigateToSecondActivity.setOnClickListener {
+            finish()
+        }
 
         db = DatabaseHelper(this)
 
