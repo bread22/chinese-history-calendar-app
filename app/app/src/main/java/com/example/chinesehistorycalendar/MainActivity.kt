@@ -12,8 +12,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.chinesehistorycalendar.DatabaseHelper
-import com.example.chinesehistorycalendar.Constants
 
 class MainActivity : AppCompatActivity() {
 
@@ -92,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             val resultString = "${currentItem.dynasty} " +
                     "${currentItem.emperor} " +
                     "${currentItem.nianhao} " +
-                    "${Constants.NUMBER_MAP_YEAR_MONTH[currentItem.year]}年 " +
+                    "${Constants.NUMBER_MAP_YEAR[currentItem.year]}年 " +
                     "${currentItem.ganzhi_year} " +
                     "${convertMonthToChinese(currentItem.month)}月 " +
                     "${Constants.NUMBER_MAP_DAY[currentItem.day]} " +
@@ -114,7 +112,7 @@ class MainActivity : AppCompatActivity() {
 
         // Convert each part that's a number
         val convertedParts = parts.map { part ->
-            Constants.NUMBER_MAP_YEAR_MONTH[part] ?: part
+            Constants.NUMBER_MAP_MONTH[part] ?: part
         }
 
         // Join the converted parts back into a single string

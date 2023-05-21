@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -71,11 +72,22 @@ class ChineseToCE : AppCompatActivity() {
                             updateSpinnerValues(findViewById(otherSpinnerId), otherField, selectedValues)
                         }
                     }
+                    // After all spinners updated, make a query and display result
+                    displayResult()
                 }
             }
         }
     }
 
+    private fun displayResult() {
+        val resultTextView = findViewById<TextView>(R.id.resultTextView)
+        val results = db.getResultsWithConstraints(selectedValues)
+        if (results.size == 1) {
+            resultTextView.text = getString(R.string.result_converted_ce_date_format, results[0]["w_year"], results[0]["w_month"], results[0]["w_day"])
+        } else {
+            resultTextView.text = ""
+        }
+    }
     private fun updateSpinnerValues(spinner: Spinner, field: String, constraints: Map<String, String>) {
         ArrayAdapter(
             this,

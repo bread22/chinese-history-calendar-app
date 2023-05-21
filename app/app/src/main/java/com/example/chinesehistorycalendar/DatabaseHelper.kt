@@ -130,4 +130,36 @@ class DatabaseHelper(context: Context) :
         Log.d("DatabaseHelper", "getValuesForFieldWithConstraints called once with $field, $constraints")
         return values
     }
+
+    fun getResultsWithConstraints(constraints: Map<String, String>): List<Map<String, String>> {
+        val selection = constraints.map { "${it.key} = ?" }.joinToString(" AND ")
+        val selectionArgs = constraints.map { it.value }.toTypedArray()
+
+        val db = this.readableDatabase
+
+        val cursor = db.query(
+            "calendar",
+            null,
+            selection,
+            selectionArgs,
+            null,
+            null,
+            null
+        )
+
+        val results = mutableListOf<Map<String, String>>()
+        with(cursor) {
+            while (moveToNext()) {
+                val row = mutableMapOf<String, String>()
+                for (col in columnNames) {
+                    row[col] = getString(getColumnIndexOrThrow(col)) ?: ""
+                }
+                results.add(row)
+            }
+        }
+        cursor.close()
+        db.close()
+
+        return results
+    }
 }

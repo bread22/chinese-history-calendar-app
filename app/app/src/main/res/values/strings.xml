@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ChineseHistoryCalendar</string>
+    <string name="result_converted_ce_date_format">%1$s-%2$s-%3$s</string>
 </resources>
