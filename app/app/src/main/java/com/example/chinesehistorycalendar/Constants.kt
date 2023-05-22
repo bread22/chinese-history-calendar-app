@@ -1,7 +1,7 @@
 package com.example.chinesehistorycalendar
 
 object Constants {
-    val NUMBER_MAP = mapOf(
+    private val NUMBER_MAP = mapOf(
         "1" to "一",
         "2" to "二",
         "3" to "三",
@@ -65,15 +65,15 @@ object Constants {
         "61" to "六十一",
     )
 
-    val NUMBER_MAP_YEAR_SP = mapOf(
+    private val NUMBER_MAP_YEAR_SP = mapOf(
         "1" to "元",
     )
 
-    val NUMBER_MAP_MONTH_SP = mapOf(
+    private val NUMBER_MAP_MONTH_SP = mapOf(
         "1" to "正",
     )
 
-    val NUMBER_MAP_DAY_SP = mapOf(
+    private val NUMBER_MAP_DAY_SP = mapOf(
         "1" to "初一",
         "2" to "初二",
         "3" to "初三",
