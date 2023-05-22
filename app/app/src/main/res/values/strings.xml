@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">二十四史闰朔表</string>
+    <string name="app_name">二十史朔闰表</string>
     <string name="result_converted_ce_date_format">%1$s 年 %2$s 月 %3$s 日</string>
     <string name="reset">重新输入</string>
     <string name="cDynasty_hint">朝代</string>
