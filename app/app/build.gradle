@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.chinesehistorycalendar'
+    namespace 'com.wuqingdev.chinesehistorycalendar'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.chinesehistorycalendar"
+        applicationId "com.wuqingdev.chinesehistorycalendar"
         minSdk 24
         targetSdk 33
         versionCode 1

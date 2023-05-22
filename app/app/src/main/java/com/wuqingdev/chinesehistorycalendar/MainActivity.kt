@@ -1,4 +1,4 @@
-package com.example.chinesehistorycalendar
+package com.wuqingdev.chinesehistorycalendar
 
 import android.content.Intent
 import android.os.Bundle

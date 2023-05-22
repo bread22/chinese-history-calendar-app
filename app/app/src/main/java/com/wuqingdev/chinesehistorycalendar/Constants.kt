@@ -1,4 +1,4 @@
-package com.example.chinesehistorycalendar
+package com.wuqingdev.chinesehistorycalendar
 
 object Constants {
     private val NUMBER_MAP = mapOf(

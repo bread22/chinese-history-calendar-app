@@ -1,4 +1,4 @@
-package com.example.chinesehistorycalendar
+package com.wuqingdev.chinesehistorycalendar
 
 import android.annotation.SuppressLint
 import android.content.Context

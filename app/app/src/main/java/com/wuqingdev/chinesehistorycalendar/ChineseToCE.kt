@@ -1,6 +1,5 @@
-package com.example.chinesehistorycalendar
+package com.wuqingdev.chinesehistorycalendar
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
