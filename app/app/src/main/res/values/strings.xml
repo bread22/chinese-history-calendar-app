@@ -1,4 +1,13 @@
 <resources>
-    <string name="app_name">ChineseHistoryCalendar</string>
-    <string name="result_converted_ce_date_format">%1$s-%2$s-%3$s</string>
+    <string name="app_name">二十四史闰朔表</string>
+    <string name="result_converted_ce_date_format">%1$s 年 %2$s 月 %3$s 日</string>
+    <string name="reset">重新输入</string>
+    <string name="cDynasty_hint">朝代</string>
+    <string name="cEmperor_hint">皇帝</string>
+    <string name="cNianhao_hint">年号</string>
+    <string name="c_year_hint">年</string>
+    <string name="cYearGanzhi_hint">干支(年)</string>
+    <string name="cMonth_hint">月</string>
+    <string name="cDay_hint">日</string>
+    <string name="cDayGanzhi_hint">干支(日)</string>
 </resources>

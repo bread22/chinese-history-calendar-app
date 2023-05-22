@@ -24,77 +24,167 @@
         android:layout_marginTop="10dp"
         android:text="公元 --> 干支" />
 
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/button_navigate_to_main_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/reset" />
+
+    <TextView
+        android:id="@+id/cDynastyHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cDynastySpinner"
+        app:layout_constraintTop_toBottomOf="@+id/resetButton"
+        android:text="@string/cDynasty_hint"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="30dp"/>
+
     <Spinner
         android:id="@+id/cDynastySpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="  朝代  "
         android:dropDownWidth="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_navigate_to_main_activity"
+        app:layout_constraintStart_toEndOf="@+id/cDynastyHint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resetButton"
         android:layout_marginTop="100dp"/>
+
+    <TextView
+        android:id="@+id/cEmperorHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cEmperorSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/cDynastySpinner"
+        android:text="@string/cEmperor_hint"
+        android:layout_marginLeft="30dp"/>
 
     <Spinner
         android:id="@+id/cEmperorSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="  皇帝 "
         android:dropDownWidth="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cEmperorHint"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cDynastySpinner" />
+
+    <TextView
+        android:id="@+id/cNianhaoHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cNianhaoSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/cEmperorSpinner"
+        android:text="@string/cNianhao_hint"
+        android:layout_marginLeft="30dp"/>
 
     <Spinner
         android:id="@+id/cNianhaoSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="  年  "
         android:dropDownWidth="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cNianhaoHint"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cEmperorSpinner" />
+
+    <TextView
+        android:id="@+id/cYearHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cYearSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/cNianhaoSpinner"
+        android:text="@string/c_year_hint"
+        android:layout_marginLeft="30dp"/>
 
     <Spinner
         android:id="@+id/cYearSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="  年  "
         android:dropDownWidth="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cYearHint"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cNianhaoSpinner" />
+
+    <TextView
+        android:id="@+id/cYearGanzhiHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cYearGanzhiSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/cYearSpinner"
+        android:text="@string/cYearGanzhi_hint"
+        android:layout_marginLeft="30dp"/>
 
     <Spinner
         android:id="@+id/cYearGanzhiSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="  年（干支）  "
         android:dropDownWidth="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cYearGanzhiHint"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cYearSpinner" />
+
+    <TextView
+        android:id="@+id/cMonthHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cMonthSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/cYearGanzhiSpinner"
+        android:text="@string/cMonth_hint"
+        android:layout_marginLeft="30dp"/>
 
     <Spinner
         android:id="@+id/cMonthSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="  月  "
         android:dropDownWidth="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cMonthHint"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cYearGanzhiSpinner" />
+
+    <TextView
+        android:id="@+id/cDayHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cDaySpinner"
+        app:layout_constraintTop_toBottomOf="@+id/cMonthSpinner"
+        android:text="@string/cDay_hint"
+        android:layout_marginLeft="30dp"/>
 
     <Spinner
         android:id="@+id/cDaySpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="  日  "
         android:dropDownWidth="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cDayHint"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cMonthSpinner" />
+
+    <TextView
+        android:id="@+id/cDayGanzhiHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cDayGanzhiSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/cDaySpinner"
+        android:text="@string/cDayGanzhi_hint"
+        android:layout_marginLeft="30dp"/>
 
     <Spinner
         android:id="@+id/cDayGanzhiSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="  日（干支）  "
         android:dropDownWidth="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cDayGanzhiHint"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cDaySpinner" />
 
     <TextView
@@ -102,9 +192,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:textSize="16sp"
-        android:layout_marginTop="200dp"
+        android:textSize="36sp"
+        android:layout_marginTop="100dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cDayGanzhiSpinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

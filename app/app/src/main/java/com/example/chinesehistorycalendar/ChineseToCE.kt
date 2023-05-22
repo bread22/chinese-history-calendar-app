@@ -50,6 +50,11 @@ class ChineseToCE : AppCompatActivity() {
             finish()
         }
 
+        findViewById<Button>(R.id.resetButton).setOnClickListener {
+            resetSpinners()
+        }
+
+
         db = DatabaseHelper(this)
 
         // Initialize each spinner with its possible values
@@ -107,4 +112,13 @@ class ChineseToCE : AppCompatActivity() {
             newAdapter[field] = true
         }
     }
+
+    private fun resetSpinners() {
+        for ((field, spinnerId) in spinners) {
+            val spinner = findViewById<Spinner>(spinnerId)
+            updateSpinnerValues(spinner, field, emptyMap())
+        }
+        findViewById<TextView>(R.id.resultTextView).text = ""
+    }
+
 }
