@@ -12,6 +12,9 @@
         android:theme="@style/Theme.ChineseHistoryCalendar"
         tools:targetApi="31">
         <activity
+            android:name=".AboutActivity"
+            android:exported="false" />
+        <activity
             android:name=".ChineseToCE"
             android:exported="false" />
         <activity

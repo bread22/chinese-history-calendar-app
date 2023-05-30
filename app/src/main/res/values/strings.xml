@@ -10,4 +10,5 @@
     <string name="cMonth_hint">月</string>
     <string name="cDay_hint">日</string>
     <string name="cDayGanzhi_hint">干支(日)</string>
+    <string name="action_about">About</string>
 </resources>

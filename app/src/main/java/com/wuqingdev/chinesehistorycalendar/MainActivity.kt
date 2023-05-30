@@ -3,6 +3,8 @@ package com.wuqingdev.chinesehistorycalendar
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -60,6 +62,21 @@ class MainActivity : AppCompatActivity() {
         monthAutoComplete.setOnItemClickListener { _, _, _, _ -> updateResults() }
         dayAutoComplete.setOnItemClickListener { _, _, _, _ -> updateResults() }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_about -> {
+                startActivity(Intent(this, AboutActivity::class.java))
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun updateResults() {
